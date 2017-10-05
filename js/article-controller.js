@@ -1,7 +1,7 @@
 (function(exports){
   function ArticleController(articleModel) {
     this._articleModel = articleModel;
-    this._articleList = [];
+    this._storedArticles = [];
   }
 
   ArticleController.prototype = {
