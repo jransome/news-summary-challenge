@@ -5,9 +5,8 @@
   }
 
   ArticleController.prototype = {
-
     index: function(){
-      return this._articleList;
+      return this._storedArticles;
     },
 
     new: function(articleData){
