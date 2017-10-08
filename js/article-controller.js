@@ -1,6 +1,9 @@
 (function(exports){
-  function ArticleController(articleModel) {
+  function ArticleController(appElement, articleModel, articleView, headlinesView) {
+    this._appElement = appElement;
     this._articleModel = articleModel;
+    this._articleView = articleView;
+    this._headlinesView = headlinesView;
     this._articleDatabase = {};
     this._IdCounter = 0;
   }
@@ -11,7 +14,8 @@
     },
 
     index: function(){
-      return this._articleDatabase;
+      var html = this._headlinesView.toHtml(this._articleDatabase);
+      this._appElement.innerHTML = html;
     },
 
     new: function(articleData){
@@ -20,7 +24,8 @@
     },
 
     show: function(id){
-      return this._articleDatabase[id];
+      var html = this._articleView.toHtml(this._articleDatabase[id]);
+      this._appElement.innerHTML = html;
     }
   };
 

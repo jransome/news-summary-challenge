@@ -1,29 +1,42 @@
-function ArticleMock(data){
+function ArticleModelMock(data){
   this._data = data;
 }
 
-var mockArticleData = "article data";
+var mockAppElement = {};
+var mockNewArticleData = "article data";
 var mockArticle1 = new Double();
 var mockArticle2 = new Double();
 var mockStoredArticles = {0: mockArticle1, 1: mockArticle2};
 var articleIdQuery = 1;
 
+// View mocks don't actually convert data to html
+var mockArticleView = new Double(['toHtml']);
+var mockArticle2Html = "article 2 html";
+mockArticleView.stubFunctionAndReturn('toHtml', mockArticle2Html);
+
+var mockHeadlinesView = new Double(['toHtml']);
+var mockHeadlinesHtml = "headlines html";
+mockHeadlinesView.stubFunctionAndReturn('toHtml', mockHeadlinesHtml);
+
+
 describe("Article controller", function(){
   it("#new: creates a new article with given data", function(){
-    var articleController = new ArticleController(ArticleMock);
-    articleController.new(mockArticleData);
-    return expect(articleController._articleDatabase[0]).toBeInstanceOf(ArticleMock);
+    var articleController = new ArticleController(mockAppElement, ArticleModelMock, mockArticleView, mockHeadlinesView);
+    articleController.new(mockNewArticleData);
+    return expect(articleController._articleDatabase[0]).toBeInstanceOf(ArticleModelMock);
   });
 
-  it("#index: returns all stored articles", function(){
-    var articleController = new ArticleController(ArticleMock);
+  it("#index: sends all articles to be rendered by the headlines-view", function(){
+    var articleController = new ArticleController(mockAppElement, ArticleModelMock, mockArticleView, mockHeadlinesView);
     articleController._articleDatabase = mockStoredArticles;
-    return expect(articleController.index()).toEqual(mockStoredArticles);
+    articleController.index();
+    return expect(articleController._appElement.innerHTML).toEqual(mockHeadlinesHtml);
   });
 
-  it("#show: returns the article with the given id", function(){
-    var articleController = new ArticleController(ArticleMock);
+  it("#show: sends the article with specified id to be rendered by the article-view", function(){
+    var articleController = new ArticleController(mockAppElement, ArticleModelMock, mockArticleView, mockHeadlinesView);
     articleController._articleDatabase = mockStoredArticles;
-    return expect(articleController.show(articleIdQuery)).toEqual(mockArticle2);
+    articleController.show(articleIdQuery);
+    return expect(articleController._appElement.innerHTML).toEqual(mockArticle2Html);
   });
 });
