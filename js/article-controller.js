@@ -1,6 +1,7 @@
 (function(exports){
-  function ArticleController(articleModel) {
+  function ArticleController(articleModel, articleView) {
     this._articleModel = articleModel;
+    this._articleView = articleView;
     this._articleDatabase = {};
     this._IdCounter = 0;
   }
@@ -20,7 +21,7 @@
     },
 
     show: function(id){
-      return this._articleDatabase[id];
+      this._articleView.toHtml(this._articleDatabase[id]);
     }
   };
 

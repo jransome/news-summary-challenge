@@ -1,7 +1,18 @@
-function ArticleMock(data){
+function ArticleModelMock(data){
   this._data = data;
 }
 
+function ArticleViewMock(){
+  this._elementInnerHtml = "";
+}
+
+ArticleViewMock.prototype = {
+  toHtml: function(data){
+    this._elementInnerHtml = data;
+  }
+}
+
+var mockArticleView = new ArticleViewMock();
 var mockArticleData = "article data";
 var mockArticle1 = new Double();
 var mockArticle2 = new Double();
@@ -10,20 +21,21 @@ var articleIdQuery = 1;
 
 describe("Article controller", function(){
   it("#new: creates a new article with given data", function(){
-    var articleController = new ArticleController(ArticleMock);
+    var articleController = new ArticleController(ArticleModelMock, mockArticleView);
     articleController.new(mockArticleData);
-    return expect(articleController._articleDatabase[0]).toBeInstanceOf(ArticleMock);
+    return expect(articleController._articleDatabase[0]).toBeInstanceOf(ArticleModelMock);
   });
 
   it("#index: returns all stored articles", function(){
-    var articleController = new ArticleController(ArticleMock);
+    var articleController = new ArticleController(ArticleModelMock, mockArticleView);
     articleController._articleDatabase = mockStoredArticles;
     return expect(articleController.index()).toEqual(mockStoredArticles);
   });
 
-  it("#show: returns the article with the given id", function(){
-    var articleController = new ArticleController(ArticleMock);
+  it("#show: sends the article with specified id to the article-view", function(){
+    var articleController = new ArticleController(ArticleModelMock, mockArticleView);
     articleController._articleDatabase = mockStoredArticles;
-    return expect(articleController.show(articleIdQuery)).toEqual(mockArticle2);
+    articleController.show(articleIdQuery)
+    return expect(mockArticleView._elementInnerHtml).toEqual(mockArticle2);
   });
 });
