@@ -1,5 +1,6 @@
 (function(exports){
-  function ArticleController(articleModel, articleView, headlinesView) {
+  function ArticleController(appElement, articleModel, articleView, headlinesView) {
+    this._appElement = appElement;
     this._articleModel = articleModel;
     this._articleView = articleView;
     this._headlinesView = headlinesView;
@@ -13,7 +14,8 @@
     },
 
     index: function(){
-      this._headlinesView.toHtml(this._articleDatabase);
+      var html = this._headlinesView.toHtml(this._articleDatabase);
+      this._appElement.innerHTML = html;
     },
 
     new: function(articleData){
@@ -22,7 +24,8 @@
     },
 
     show: function(id){
-      this._articleView.toHtml(this._articleDatabase[id]);
+      var html = this._articleView.toHtml(this._articleDatabase[id]);
+      this._appElement.innerHTML = html;
     }
   };
 
