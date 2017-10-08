@@ -1,6 +1,5 @@
 (function(exports){
-  function ArticleView(element) {
-    this._element = element;
+  function ArticleView() {
   }
 
   ArticleView.prototype = {
@@ -8,7 +7,8 @@
       return ["<h1>" + article.title() + "</h1>",
               "<div class='article-content'><p>",
               article.content(),
-              "</p></div>"].join("");
+              "</p></div>"
+              ].join("");
     }
   };
 

@@ -1,4 +1,3 @@
-
 var articleMock = new Double(['title', 'content']);
 var articleMockTitle = 'SENSTATIONAL HEADLINE';
 var articleMockContent = 'Article content... blah blah';
