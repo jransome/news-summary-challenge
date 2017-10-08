@@ -1,7 +1,8 @@
 (function(exports){
-  function ArticleController(articleModel, articleView) {
+  function ArticleController(articleModel, articleView, headlinesView) {
     this._articleModel = articleModel;
     this._articleView = articleView;
+    this._headlinesView = headlinesView;
     this._articleDatabase = {};
     this._IdCounter = 0;
   }
@@ -12,7 +13,7 @@
     },
 
     index: function(){
-      return this._articleDatabase;
+      this._headlinesView.toHtml(this._articleDatabase);
     },
 
     new: function(articleData){
