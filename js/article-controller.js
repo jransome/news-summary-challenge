@@ -18,7 +18,7 @@
       this._appElement.innerHTML = html;
     },
 
-    new: function(articleData){
+    create: function(articleData){
       var newArticle = new this._articleModel(articleData);
       this._articleDatabase[this.createNewArticleID()] = newArticle;
     },

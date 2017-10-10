@@ -20,9 +20,9 @@ mockHeadlinesView.stubFunctionAndReturn('toHtml', mockHeadlinesHtml);
 
 
 describe("Article controller", function(){
-  it("#new: creates a new article with given data", function(){
+  it("#create: creates a new article with given data", function(){
     var articleController = new ArticleController(mockAppElement, ArticleModelMock, mockArticleView, mockHeadlinesView);
-    articleController.new(mockNewArticleData);
+    articleController.create(mockNewArticleData);
     return expect(articleController._articleDatabase[0]).toBeInstanceOf(ArticleModelMock);
   });
 
