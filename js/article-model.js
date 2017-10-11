@@ -1,14 +1,16 @@
 (function(exports){
   function Article(data){
-    this._title = data.title;
-    this._thumbnail = data.thumbnail;
-    this._content = data.content;
-    this._url = data.url;
+    var fields = data.fields;
+    this._allFields = fields;
+    this._headline = fields.headline;
+    this._thumbnail = fields.thumbnail;
+    this._content = fields.bodyText;
+    this._url = data.webUrl;
   }
 
   Article.prototype = {
-    title: function(){
-      return this._title;
+    headline: function(){
+      return this._headline;
     },
 
     thumbnail: function(){
