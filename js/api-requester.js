@@ -1,19 +1,19 @@
-(function(exports){
-  function ApiRequester(){
+ (function(exports){
+  function ApiRequester(url){
+    this._url = url;
   }
 
   ApiRequester.prototype = {
-    getData: function(url){
+    getArticles: function(callback){
       var xhttp = new XMLHttpRequest();
 
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-          console.log(this.responseText);
-          return JSON.parse(this.responseText);
+          callback(JSON.parse(this.responseText));
         }
       };
 
-      xhttp.open("GET", url, true);
+      xhttp.open("GET", this._url, true);
       xhttp.send();
     }
   };
