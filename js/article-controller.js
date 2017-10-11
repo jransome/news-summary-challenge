@@ -21,8 +21,9 @@
     },
 
     create: function(articleData){
-      var newArticle = new this._articleModel(articleData);
-      this._articleDatabase[this.createNewArticleID()] = newArticle;
+      var newId = this.createNewArticleID();
+      var newArticle = new this._articleModel(newId, articleData);
+      this._articleDatabase[newId] = newArticle;
     },
 
     requestArticles: function(){
