@@ -6,18 +6,24 @@
     <link rel="stylesheet" href="lib/peanut-butter/peanut-butter.css">
   </head>
   <body>
+
+<div>
     <div id="errorMsg"></div>
     <!-- Peanut Butter Testing Library -->
     <script src="lib/peanut-butter/peanut-butter-doubles.js"> </script>
     <script src="lib/peanut-butter/peanut-butter.js"> </script>
+
     <!-- Production code scripts go here -->
-    <script src="js/article-model.js"> </script>
-    <script src="js/article-controller.js"> </script>
-    <script src="js/article-view.js"> </script>
     <script src="js/api-requester.js"> </script>
+    <script src="js/article-model.js"> </script>
+    <script src="js/article-view.js"> </script>
+    <script src="js/headlines-view.js"> </script>
+    <script src="js/article-controller.js"> </script>
+
     <!-- Spec scripts go here -->
     <script src="spec/unit/article-model-spec.js"> </script>
-    <script src="spec/unit/article-controller-spec.js"> </script>
     <script src="spec/unit/article-view-spec.js"> </script>
+    <script src="spec/unit/headlines-view-spec.js"> </script>
+    <script src="spec/unit/article-controller-spec.js"> </script>
   </body>
 </html>

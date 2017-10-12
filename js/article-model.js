@@ -1,5 +1,6 @@
 (function(exports){
-  function Article(data){
+  function Article(id, data){
+    this._id = id;
     var fields = data.fields;
     this._allFields = fields;
     this._headline = fields.headline;
@@ -9,6 +10,10 @@
   }
 
   Article.prototype = {
+    id: function(){
+      return this._id;
+    },
+
     headline: function(){
       return this._headline;
     },
