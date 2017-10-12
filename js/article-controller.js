@@ -12,12 +12,12 @@
   ArticleController.prototype = {
     index: function(){
       var html = this._headlinesView.toHtml(this._articleDatabase);
-      this._appElement.innerHTML = html;
+      this.updateElement(html);
     },
 
     show: function(id){
       var html = this._articleView.toHtml(this._articleDatabase[id]);
-      this._appElement.innerHTML = html;
+      this.updateElement(html);
     },
 
     create: function(articleData){
@@ -26,10 +26,15 @@
       this._articleDatabase[newId] = newArticle;
     },
 
+    updateElement: function(html){
+      this._appElement.innerHTML = html;
+    },
+
     requestArticles: function(){
       var self = this;
       this._apiRequester.getArticles(function(response){
         self.saveArticles(response);
+        self.index();
       });
     },
 
