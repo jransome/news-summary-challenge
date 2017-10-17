@@ -6,6 +6,7 @@
     this._headline = fields.headline;
     this._thumbnail = fields.thumbnail;
     this._content = fields.bodyText;
+    this._summary = null;
     this._url = data.webUrl;
   }
 
@@ -24,6 +25,14 @@
 
     content: function(){
       return this._content;
+    },
+
+    summary: function (data){
+      if (data){
+        this._summary = data.sentences.join(" ");
+      } else{
+        return this._summary;
+      }
     },
 
     url: function(){

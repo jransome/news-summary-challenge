@@ -29,7 +29,8 @@
                                 "</a>",
                               "</div>"].join("");
 
-  var expectedHtml = "<div>" + expectedHeadline1Html + expectedHeadline2Html + "</div>";
+  var refreshButton = "<button onclick=window.location.href=''>Refresh headlines</button>";
+  var expectedHtml = refreshButton + "<div>" + expectedHeadline1Html + expectedHeadline2Html + "</div>";
 
   describe("Headlines view", function(){
     it("#toHtml: renders the HTML for a list of articles", function(){
