@@ -4,7 +4,8 @@
 
   HeadlinesView.prototype = {
     toHtml: function(articles) {
-      var outputHtml = "<div>";
+      var outputHtml = "<button onclick=window.location.href=''>Refresh headlines</button>";
+      outputHtml += "<div>";
       for (var eachArticle in articles) {
         outputHtml += ["<div>",
                         "<a href='#", articles[eachArticle].id(), "'>",

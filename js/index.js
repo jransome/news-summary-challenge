@@ -1,23 +1,18 @@
 'use strict';
 
 (function(){
-  var url = "https://news-summary-api.herokuapp.com/guardian?apiRequestUrl=http://content.guardianapis.com/technology?show-fields=all";
+  var headlinesRequestUrl = "https://news-summary-api.herokuapp.com/guardian?apiRequestUrl=http://content.guardianapis.com/technology?show-fields=all";
+  var summaryRequestUrl = "http://news-summary-api.herokuapp.com/aylien?apiRequestUrl=https://api.aylien.com/api/v1/summarize?url=";
 
   var appElement = document.getElementById("app");
-  var apiRequester = new ApiRequester(url);
+  var apiRequester = new ApiRequester(headlinesRequestUrl, summaryRequestUrl);
   var articleView = new ArticleView();
   var headlinesView = new HeadlinesView();
   var articleController = new ArticleController(apiRequester, appElement, Article, articleView, headlinesView);
 
-  articleController.requestArticles();
-
-  window.addEventListener("hashchange", function() {
-    if(!location.hash.includes("#")) {
-      articleController.index();
-    } else {
-      var articleId = location.hash.substr(1);
-      articleController.show(articleId);
-    }
+  articleController.setupHashListener();
+  articleController.requestHeadlines(function(){
+    articleController.index();
   });
 
 })();
