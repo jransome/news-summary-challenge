@@ -12,7 +12,7 @@ Run the following in your terminal:
 $ git clone git@github.com:jransome/news-summary-challenge.git
 $ cd news-summary-challenge
 $ npm install
-$ node app.js
+$ node server.js
 ```
 
 ...then navigate to http://localhost:8080 in your browser of choice!
