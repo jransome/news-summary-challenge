@@ -1,9 +1,9 @@
-var mockArticleUrl = "http://news/article1.com";
-var mockHeadlinesRequestUrl = "http://headlines.com";
-var mockSummaryRequestUrl = "http://summaries.com/summarise?url=";
-var mockXMLHttpRequest = new Double(['open', 'send']);
-
 (function(){
+  var mockArticleUrl = "http://news/article1.com";
+  var mockHeadlinesRequestUrl = "http://headlines.com";
+  var mockSummaryRequestUrl = "http://summaries.com/summarise?url=";
+  var mockXMLHttpRequest = new Double(['open', 'send']);
+
   describe("API requester", function(){
     it("#getHeadlines: opens an api request for the headlines url", function(){
       var apiRequester = new ApiRequester(mockHeadlinesRequestUrl, mockSummaryRequestUrl, mockXMLHttpRequest);

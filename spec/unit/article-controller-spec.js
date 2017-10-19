@@ -1,33 +1,32 @@
 (function(){
-
-  function MockArticleModel(data){
-    this._data = data;
-  }
-
-  var mockApiRequester = new Double(['getHeadlines', 'getArticleSummary']);
-  var mockAppElement = {};
-
-  var mockArticleView = new Double(['toHtml']);
-  var mockArticle2Html = "article 2 html";
-  mockArticleView.stubFunctionAndReturn('toHtml', mockArticle2Html);
-
-  var mockHeadlinesView = new Double(['toHtml']);
-  var mockHeadlinesHtml = "headlines html";
-  mockHeadlinesView.stubFunctionAndReturn('toHtml', mockHeadlinesHtml);
-
-  var mockWindow = new Double(['addEventListener'])
-
-  function createNewSubjectClass(){
-    return new ArticleController(mockApiRequester, mockAppElement, MockArticleModel, mockArticleView, mockHeadlinesView, mockWindow);
-  }
-
-  var mockNewArticleData = "article data";
-  var mockArticle1 = new Double(['summary']);
-  var mockArticle2 = new Double();
-  var mockStoredArticles = {0: mockArticle1, 1: mockArticle2};
-  var articleIdQuery = 1;
-
   describe("Article controller", function(){
+    function MockArticleModel(data){
+      this._data = data;
+    }
+
+    var mockApiRequester = new Double(['getHeadlines', 'getArticleSummary']);
+    var mockAppElement = {};
+
+    var mockArticleView = new Double(['toHtml']);
+    var mockArticle2Html = "article 2 html";
+    mockArticleView.stubFunctionAndReturn('toHtml', mockArticle2Html);
+
+    var mockHeadlinesView = new Double(['toHtml']);
+    var mockHeadlinesHtml = "headlines html";
+    mockHeadlinesView.stubFunctionAndReturn('toHtml', mockHeadlinesHtml);
+
+    var mockWindow = new Double(['addEventListener'])
+
+    function createNewSubjectClass(){
+      return new ArticleController(mockApiRequester, mockAppElement, MockArticleModel, mockArticleView, mockHeadlinesView, mockWindow);
+    }
+
+    var mockNewArticleData = "article data";
+    var mockArticle1 = new Double(['summary']);
+    var mockArticle2 = new Double();
+    var mockStoredArticles = {0: mockArticle1, 1: mockArticle2};
+    var articleIdQuery = 1;
+
     it("#create: creates a new article with given data", function(){
       var articleController = createNewSubjectClass();
       articleController.create(mockNewArticleData);
